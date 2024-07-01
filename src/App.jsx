@@ -5,30 +5,46 @@ import LandingPage from './pages/landing'
 import About from './pages/about'
 import ContactUs from './pages/contact-us'
 import Collection from './pages/collection'
+import RootLayout from './layouts/rootLayout'
+
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <LandingPage />
-    },
-    {
-      path: "about-us",
-      element: <About />
-    },
+      element: <RootLayout/>,
+      children: [
+        {
+          index: true,
+          element: <LandingPage />
+        },
+        {
+          path: "about-us",
+          element: <About />
+        },
+    
+        {
+          path: "collection",
+          element: <Collection />
+        },
+    
+        {
+          path: "contact-us",
+          element: <ContactUs />
+    
+        },
+   
+        
 
-    {
-      path: "collection",
-      element: <Collection />
-    },
 
-    {
-      path: "contact-us",
-      element: <ContactUs />
 
-    },
 
+
+
+      ]
+    }
+    
   ])
   return <RouterProvider router={router} />;
 }
